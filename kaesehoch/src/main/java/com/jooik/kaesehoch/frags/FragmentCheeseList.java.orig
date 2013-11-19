@@ -349,15 +349,7 @@ public class FragmentCheeseList extends Fragment
     // ------------------------------------------------------------------------
 
     /**
-<<<<<<< HEAD
-<<<<<<< HEAD
-     * The different staggerd row layouts......
-=======
      * The different staggerd row layouts.......
->>>>>>> feature/feature2
-=======
-     * The different staggerd row layouts.......
->>>>>>> feature/feature2
      */
     public enum RowStyle
     {
@@ -365,8 +357,12 @@ public class FragmentCheeseList extends Fragment
     }
 
     /**
+<<<<<<< HEAD
      * Different stages the UI might traverse while creating the UI programmatically.
      * Todalooo....
+=======
+     * Different stages the UI might traverse while creating the UI programmatically.........
+>>>>>>> feature/feature3
      * Smarter than dealing with state 1,2,3....
      */
     public enum GridCreationState
