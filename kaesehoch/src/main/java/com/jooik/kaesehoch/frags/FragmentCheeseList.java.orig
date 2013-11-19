@@ -349,7 +349,15 @@ public class FragmentCheeseList extends Fragment
     // ------------------------------------------------------------------------
 
     /**
+<<<<<<< HEAD
+<<<<<<< HEAD
+     * The different staggerd row layouts......
+=======
      * The different staggerd row layouts.......
+>>>>>>> feature/feature2
+=======
+     * The different staggerd row layouts.......
+>>>>>>> feature/feature2
      */
     public enum RowStyle
     {
