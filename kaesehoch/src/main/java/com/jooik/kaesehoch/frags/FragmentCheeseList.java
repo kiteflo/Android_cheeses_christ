@@ -358,6 +358,7 @@ public class FragmentCheeseList extends Fragment
 
     /**
      * Different stages the UI might traverse while creating the UI programmatically.
+     * Todalooo....
      * Smarter than dealing with state 1,2,3....
      */
     public enum GridCreationState
