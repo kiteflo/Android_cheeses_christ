@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jooik.kaesehoch.R;
+import com.jooik.kaesehoch.activities.ActivityOverlay;
 import com.jooik.kaesehoch.util.ISquareItem;
 import com.jooik.kaesehoch.util.SquareType;
 
@@ -53,7 +55,7 @@ public class FragmentCheeseList extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_cheese_list,container,false);
+        final View view = inflater.inflate(R.layout.fragment_cheese_list,container,false);
         LinearLayout llFrame = (LinearLayout)view.findViewById(R.id.ll_frame);
 
         // apply layout properties (color etc.)
@@ -121,6 +123,15 @@ public class FragmentCheeseList extends Fragment
                         RelativeLayout rl = new RelativeLayout(view.getContext());
                         rl.setLayoutParams(layoutParams);
 
+                        rl.setOnClickListener(new View.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(View v)
+                            {
+                                displayOverlay(view);
+                            }
+                        });
+
                         ImageView iv = initImage(item);
                         TextView tv = initText(SquareType.LARGE_ITEM,item);
                         rl.addView(iv);
@@ -136,6 +147,15 @@ public class FragmentCheeseList extends Fragment
                         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(width/3*2, height/3);
                         RelativeLayout rl = new RelativeLayout(view.getContext());
                         rl.setLayoutParams(layoutParams);
+
+                        rl.setOnClickListener(new View.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(View v)
+                            {
+                                displayOverlay(view);
+                            }
+                        });
 
                         ImageView iv = initImage(item);
                         TextView tv = initText(SquareType.MEDIUM_ITEM,item);
@@ -162,6 +182,15 @@ public class FragmentCheeseList extends Fragment
                         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(width/3, height/3/2);
                         RelativeLayout rl = new RelativeLayout(view.getContext());
                         rl.setLayoutParams(layoutParams);
+
+                        rl.setOnClickListener(new View.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(View v)
+                            {
+                                displayOverlay(view);
+                            }
+                        });
 
                         ImageView iv = initImage(item);
                         TextView tv = initText(SquareType.SMALL_ITEM,item);
@@ -364,6 +393,51 @@ public class FragmentCheeseList extends Fragment
     public enum GridCreationState
     {
         ADDED_MEDIUM,ADDED_SMALL_TOP_RIGHT,ADDED_SMALL_TOP_LEFT,ADDED_SMALL_BOTTOM_LEFT, START_NEW_ROW;
+    }
+
+    /**
+     * Display overlay screen for cheesy details....
+     * @param view
+     */
+    private void displayOverlay(View view)
+    {
+        /*Point p = new Point();
+        p.x = 30;
+        p.y = 30;
+
+        int popupWidth = 400;
+        int popupHeight = 150;
+
+        // Inflate the activity_overlay.xml
+        ActivityOverlay ao = new ActivityOverlay();
+        android.support.v4.app.FragmentTransaction ft = getActivity().getSupportFragmentManager().beginTransaction();
+        LayoutInflater layoutInflater = LayoutInflater.from(getActivity().getApplicationContext());
+        View layout = layoutInflater.inflate(R.layout.activity_overlay, null);
+
+        // Creating the PopupWindow
+        final PopupWindow popup = new PopupWindow(getActivity());
+        popup.setContentView(layout);
+        popup.setWidth(popupWidth);
+        popup.setHeight(popupHeight);
+        popup.setFocusable(true);
+
+        // Some offset to align the popup a bit to the right, and a bit down, relative to button's position.
+        int OFFSET_X = 30;
+        int OFFSET_Y = 30;
+
+        // Clear the default translucent background
+        popup.setBackgroundDrawable(new BitmapDrawable());
+
+        // Displaying the popup at the specified location, + offsets.
+        popup.showAtLocation(layout, Gravity.NO_GRAVITY, p.x + OFFSET_X, p.y + OFFSET_Y);*/
+
+        // Create the fragment and show it as a dialog.
+        //DialogFragment newFragment = ActivityOverlay.newInstance();
+        //newFragment.show(getFragmentManager(), "dialog");
+
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        ActivityOverlay overlay = new ActivityOverlay();
+        overlay.show(fm, "OVERLAY");
     }
 
     // ------------------------------------------------------------------------

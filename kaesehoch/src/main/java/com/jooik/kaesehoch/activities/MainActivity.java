@@ -1,4 +1,4 @@
-package com.jooik.kaesehoch;
+package com.jooik.kaesehoch.activities;
 
 import android.app.ProgressDialog;
 import android.graphics.Color;
@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.jooik.kaesehoch.R;
 import com.jooik.kaesehoch.domain.Cheese;
 import com.jooik.kaesehoch.domain.wrapper.CheeseWrapper;
 import com.jooik.kaesehoch.frags.FragmentCheeseList;
