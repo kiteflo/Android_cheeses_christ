@@ -1,11 +1,9 @@
 package com.jooik.kaesehoch.frags;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,10 +15,11 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.jooik.kaesehoch.R;
+import com.jooik.kaesehoch.domain.Cheese;
 import com.jooik.kaesehoch.util.ISquareItem;
+import com.jooik.kaesehoch.util.RetrieveImage;
 import com.jooik.kaesehoch.util.SquareType;
 
-import java.net.URL;
 import java.util.List;
 import java.util.Random;
 
@@ -53,7 +52,7 @@ public class FragmentCheeseList extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState)
     {
-        View view = inflater.inflate(R.layout.fragment_cheese_list,container,false);
+        final View view = inflater.inflate(R.layout.fragment_cheese_list,container,false);
         LinearLayout llFrame = (LinearLayout)view.findViewById(R.id.ll_frame);
 
         // apply layout properties (color etc.)
@@ -72,7 +71,7 @@ public class FragmentCheeseList extends Fragment
         GridCreationState creationState = GridCreationState.START_NEW_ROW;
         RowStyle rowStyle = null;
 
-        for (ISquareItem item : items)
+        for (final ISquareItem item : items)
         {
             // create new row in layout and randomly generate the first item
             // which the will be added to the row. The first tem determines all
@@ -121,6 +120,15 @@ public class FragmentCheeseList extends Fragment
                         RelativeLayout rl = new RelativeLayout(view.getContext());
                         rl.setLayoutParams(layoutParams);
 
+                        rl.setOnClickListener(new View.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(View v)
+                            {
+                                displayOverlay(view,item.getCheese());
+                            }
+                        });
+
                         ImageView iv = initImage(item);
                         TextView tv = initText(SquareType.LARGE_ITEM,item);
                         rl.addView(iv);
@@ -136,6 +144,15 @@ public class FragmentCheeseList extends Fragment
                         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(width/3*2, height/3);
                         RelativeLayout rl = new RelativeLayout(view.getContext());
                         rl.setLayoutParams(layoutParams);
+
+                        rl.setOnClickListener(new View.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(View v)
+                            {
+                                displayOverlay(view,item.getCheese());
+                            }
+                        });
 
                         ImageView iv = initImage(item);
                         TextView tv = initText(SquareType.MEDIUM_ITEM,item);
@@ -162,6 +179,15 @@ public class FragmentCheeseList extends Fragment
                         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(width/3, height/3/2);
                         RelativeLayout rl = new RelativeLayout(view.getContext());
                         rl.setLayoutParams(layoutParams);
+
+                        rl.setOnClickListener(new View.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(View v)
+                            {
+                                displayOverlay(view,item.getCheese());
+                            }
+                        });
 
                         ImageView iv = initImage(item);
                         TextView tv = initText(SquareType.SMALL_ITEM,item);
@@ -349,7 +375,7 @@ public class FragmentCheeseList extends Fragment
     // ------------------------------------------------------------------------
 
     /**
-     * The different staggerd row layouts.
+     * The different staggerd row layouts....
      */
     public enum RowStyle
     {
@@ -358,6 +384,7 @@ public class FragmentCheeseList extends Fragment
 
     /**
      * Different stages the UI might traverse while creating the UI programmatically.
+     * Todalooo....
      * Smarter than dealing with state 1,2,3....
      */
     public enum GridCreationState
@@ -365,46 +392,21 @@ public class FragmentCheeseList extends Fragment
         ADDED_MEDIUM,ADDED_SMALL_TOP_RIGHT,ADDED_SMALL_TOP_LEFT,ADDED_SMALL_BOTTOM_LEFT, START_NEW_ROW;
     }
 
+    /**
+     * Display overlay screen for cheesy details....
+     * @param view
+     */
+    private void displayOverlay(View view,Cheese cheese)
+    {
+        FragmentManager fm = getActivity().getSupportFragmentManager();
+        FragmentDetailsOverlay overlay = new FragmentDetailsOverlay();
+        overlay.setCheese(cheese);
+        overlay.show(fm, "OVERLAY");
+    }
+
     // ------------------------------------------------------------------------
     // inner classes
     // ------------------------------------------------------------------------
-
-    /**
-     * Asychronous image handler...
-     */
-    class RetrieveImage extends AsyncTask<String,Void,Bitmap>
-    {
-
-        private ImageView imageView;
-
-        public RetrieveImage(ImageView imageView)
-        {
-            this.imageView = imageView;
-        }
-
-        @Override
-        protected Bitmap doInBackground(String... params)
-        {
-            try
-            {
-                URL url= new URL(params[0]);
-                Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-
-                return bmp;
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Bitmap bitmap)
-        {
-            imageView.setImageBitmap(bitmap);
-        }
-    }
 
     // ------------------------------------------------------------------------
     // GETTER & SETTER

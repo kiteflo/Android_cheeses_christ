@@ -2,6 +2,8 @@ package com.jooik.kaesehoch.util;
 
 import android.graphics.Typeface;
 
+import com.jooik.kaesehoch.domain.Cheese;
+
 /**
  * Demo implememtation for a square item which is used within a szaggered
  * view...
@@ -22,6 +24,7 @@ public class SquareItem
     private int fontsize_medium;
     private int fontsize_large;
     private int fontColor;
+    private Cheese cheese;
     private ShadowProperties shadowProperties;
 
     // ------------------------------------------------------------------------
@@ -125,5 +128,16 @@ public class SquareItem
     public ShadowProperties getShadowProperties(SquareType squareType)
     {
         return this.shadowProperties;
+    }
+
+    @Override
+    public Cheese getCheese()
+    {
+        return cheese;
+    }
+
+    public void setCheese(Cheese cheese)
+    {
+        this.cheese = cheese;
     }
 }

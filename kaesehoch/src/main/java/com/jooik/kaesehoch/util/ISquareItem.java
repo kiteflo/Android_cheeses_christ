@@ -2,6 +2,8 @@ package com.jooik.kaesehoch.util;
 
 import android.graphics.Typeface;
 
+import com.jooik.kaesehoch.domain.Cheese;
+
 /**
  * An interface definition enabling us to program against while setting up
  * a staggered view - each view item within the staggered view NEEDS to implemt
@@ -65,4 +67,10 @@ public interface ISquareItem
      * @return
      */
     public ShadowProperties getShadowProperties(SquareType squareType);
+
+    /**
+     * Helper in order to get the contents of this square item...
+     * @return
+     */
+    public Cheese getCheese();
 }

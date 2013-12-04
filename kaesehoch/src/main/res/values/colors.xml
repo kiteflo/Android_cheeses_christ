@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="overlay_header_brown">#593d3d</color>
+    <color name="overlay_body_beige">#af9e71</color>
+    <color name="overlay_font_beige">#ffffcc</color>
+</resources>

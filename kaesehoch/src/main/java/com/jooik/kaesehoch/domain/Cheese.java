@@ -14,11 +14,11 @@ public class Cheese
     private String description;
     private String maturingTime;
     private String imageURL;
+    private Animal animal;
 
     // ------------------------------------------------------------------------
     // GETTER & SETTER
     // ------------------------------------------------------------------------
-
 
     public Long getId()
     {
@@ -60,13 +60,14 @@ public class Cheese
         this.maturingTime = maturingTime;
     }
 
-    public String getImageURL()
-    {
-        return imageURL;
-    }
+    public String getImageURL() { return imageURL; }
 
     public void setImageURL(String imageURL)
     {
         this.imageURL = imageURL;
     }
+
+    public Animal getAnimal() { return animal; }
+
+    public void setAnimal(Animal animal) { this.animal = animal; }
 }

@@ -1,4 +1,4 @@
-package com.jooik.kaesehoch;
+package com.jooik.kaesehoch.activities;
 
 import android.app.ProgressDialog;
 import android.graphics.Color;
@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.jooik.kaesehoch.R;
 import com.jooik.kaesehoch.domain.Cheese;
 import com.jooik.kaesehoch.domain.wrapper.CheeseWrapper;
 import com.jooik.kaesehoch.frags.FragmentCheeseList;
@@ -67,7 +68,7 @@ public class MainActivity extends ActionBarActivity implements IRestCallback<Che
     public void initItems()
     {
         // trigger server call
-        ServerCall call = new ServerCall("http://10.0.1.5:8080/3kaesehoch/rest/cheese",
+        ServerCall call = new ServerCall("http://192.168.43.147:8080/3kaesehoch/rest/cheese",
                 this);
         call.execute();
     }
@@ -104,6 +105,7 @@ public class MainActivity extends ActionBarActivity implements IRestCallback<Che
         for (Cheese cheese : response)
         {
             SquareItem squareItem = new SquareItem(cheese.getName(),cheese.getImageURL());
+            squareItem.setCheese(cheese);
             squareItem.applyFontStyle(font_large,font_medium,font_small,face,font_color,shadowProperties);
             squareItems.add(squareItem);
         }

@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/android_cheeses_christ.iml" filepath="$PROJECT_DIR$/android_cheeses_christ.iml" />
       <module fileurl="file://$PROJECT_DIR$/kaesehoch.iml" filepath="$PROJECT_DIR$/kaesehoch.iml" />
       <module fileurl="file://$PROJECT_DIR$/kaesehoch/kaesehoch-kaesehoch.iml" filepath="$PROJECT_DIR$/kaesehoch/kaesehoch-kaesehoch.iml" />
     </modules>
