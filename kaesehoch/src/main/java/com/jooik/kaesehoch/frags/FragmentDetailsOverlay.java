@@ -42,7 +42,8 @@ public class FragmentDetailsOverlay extends DialogFragment
         Drawable background = new ColorDrawable(getResources().getColor(R.color.overlay_body_beige));
         background.setAlpha(210);
         dialog.getWindow().setBackgroundDrawable(background);
-        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        // dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        dialog.getWindow().setLayout(300,400);
         return dialog;
     }
 

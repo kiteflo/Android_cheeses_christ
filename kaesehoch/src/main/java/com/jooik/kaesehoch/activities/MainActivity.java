@@ -68,7 +68,7 @@ public class MainActivity extends ActionBarActivity implements IRestCallback<Che
     public void initItems()
     {
         // trigger server call
-        ServerCall call = new ServerCall("http://192.168.43.147:8080/3kaesehoch/rest/cheese",
+        ServerCall call = new ServerCall("http://localhost:8080/3kaesehoch/rest/cheese",
                 this);
         call.execute();
     }
